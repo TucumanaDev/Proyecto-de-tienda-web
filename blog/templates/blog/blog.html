@@ -1,0 +1,42 @@
+{% extends "WebProjectApp/base.html" %}
+
+{% load static%}
+
+{% block content %}
+
+    {% for post in posts %}
+    <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{post.image.url}}" alt="" style="width:50%;" >
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="section-heading-lower">{{post.tittle}}</span>
+            <span class="section-heading-upper">{{post.content}}</span>
+          </h2>
+
+           <div  style="text-align:left;">
+              Autor: {{post.author}}
+               <br>
+              Categoria:
+
+    {% for post in post.categories.all %}
+                {{post}} &nbsp;
+
+    {% endfor %}
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endfor %}
+  <section>
+      <div style="text-align: center; width: 75%; margin: auto; color:white; font-size:2em;">
+      {% for categorie in categories %}
+                <a href="{% url 'categorie' categorie.id %}" class="linksCategories">{{categorie}}</a> &nbsp;
+      {% endfor %}
+      </div>
+  </section>
+
+
+{% endblock %}
